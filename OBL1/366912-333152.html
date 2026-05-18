@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel= “stylesheet” href="stylesheet.css"> 
+    <title>Sistema de gestión</title>
+</head>
+
+<header>
+
+    <h1> Sistema de Gestión (Rouet--Coirier-Pesce)</h1>
+
+</header>
+
+<body>
+
+<h2> Manejo de Influencer </h2>
+<h3> Alta de influencer </h3>
+<button> Agregar Influencer </button>
+<h3> Datos del influencer a agregar </h3>
+<h3> Influencer</h3>
+<label> Nombre</label>
+<input type="text"> 
+<label> Mail </label>
+<input type="text"> 
+<label> % Comisión </label>
+<input type="number"> 
+<button> Cancelar </button>
+<button> Agregar </button>
+<br>
+<br>
+<br>
+<h3> Tabla de Influencers</h3>
+
+    <table border="1">
+        
+        <thead>
+            <tr>
+                <th> Nombre </th>
+                <th> Email </th>
+                <th> % Comisión </th>
+                <th> Total a cobrar </th>
+                <th> Detalle </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr> 
+                <td> Diego Pesce </td>
+                <td> diego.pesce@gmail.com </td>
+                <td> 20% </td>
+                <td> $500 </td>
+                <td> 
+                    <button> Ventas </button>
+                </td>
+            </tr>
+            <tr>
+                <td> Raphaël Rouet--Coirier</td>
+                <td> raphael.rouet.coirier@gmail.com</td>
+                <td> 10%</td>
+                <td> $400 </td>
+                <td> 
+                    <button> Ventas </button>
+                </td>
+            </tr>
+            <tr> 
+                <td> Geronimo ghirardi</td>
+                <td> geronimo.ghirardi@gmail.com </td>
+                <td> 5% </td>
+                <td> $250 </td>
+                <td> 
+                    <button> Ventas </button>
+                </td>
+            </tr>
+        </tbody>
+
+    </table>
+    
+    <h2> Manejo de Artículos </h2>
+    <h3> Alta de Artículo </h3>
+    <button> Agregar Artículo </button>
+    <h3> Datos del artículo a agregar</h3>
+    <h3> Artículo </h3>
+    <label> Código </label>
+    <input type="number">
+    <label> Descripción </label>
+    <input type="Text">
+    <label> Precio </label>
+    <input type="Number">
+    <button> Cancelar </button>
+    <button> Agregar</button>
+    <h3> Tabla de Artículos </h3>
+
+    <table border="1">
+
+        <thead>
+            <tr>
+                <th> Código </th>
+                <th> Descripción </th>
+                <th> Precio </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr> 
+                <td> A001</td>
+                <td> Remera</td>
+                <td> $700 </td>
+            </tr>
+            <tr> 
+                <td> A002</td>
+                <td> Short</td>
+                <td> $500 </td>
+            </tr>
+            <tr> 
+                <td> A003</td>
+                <td> Buzo</td>
+                <td> $1000 </td>
+            </tr>
+        </tbody>
+
+    </table>
+
+<h2> Ventas </h2>
+<h3> Alta de Ventas </h3>
+<button> Agregar venta </button>
+<h3> Datos de la venta a agregar </h3>
+<h3> Venta </h3>
+<label> N°: 3 Artículo </label>
+<select>
+    <option> A001</option>
+    <option> A002 </option>
+    <option> A003 </option>
+</select>
+<label> Influencer </label>
+<select>
+    <option> Diego Pesce</option>
+    <option> Raphaël Rouet--Coirier </option>
+    <option> Geronimo Ghirardi </option>
+</select>
+<label> Cantidad </label>
+<input type="Number">
+<label> Medio </label>
+<select>
+    <option> 1- Instagram </option>
+    <option> 2- Youtube </option>
+    <option> 3- X </option>
+    <option> 4- TikTok </option>
+    <option> 5- Facebook </option>
+    <option> 6- Otros </option>
+</select>
+<button> Cancelar </button>
+<button> Agregar</button>
+<h3> Tabla de Ventas (ordenada por número de venta)</h3>
+
+    <table border="1">
+
+        <thead>
+
+            <tr>
+                <th> N° venta </th>
+                <th> Código </th>
+                <th> Cantidad </th>
+                <th> Nombre Influencer"</th>
+                <th> Medio </th>
+                <th> Eliminar </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr> 
+                <td> 1</td>
+                <td> A001 </td>
+                <td> Diego Pesce</td>
+                <td> 3 </td>
+                <td> 6- Otros </td>
+                <td> 
+                    <button img src="logo_cruz1.avif" width="10"> </button>
+                </td>
+            </tr>
+            <tr> 
+                <td> 2</td>
+                <td> A002 </td>
+                <td> Raphaël Rouet--Coirier </td>
+                <td> 4 </td>
+                <td> 1- Instagram </td>
+                <td> 
+                    <button>
+                        <img src="images.png" width="10">
+                    </button>
+                </td>
+            </tr>
+            <tr> 
+                <td> 3</td>
+                <td> A003 </td>
+                <td> Geronimo Ghirardi </td>
+                <td> 2 </td>
+                <td> 5- Facebook </td>
+                <td> 
+                    <button >
+                        <img src="images.png" width="10">
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+
+    </table>
+
+    <h3> Gráfico de burbujas </h3>
+
+</body>
+
+<footer>
+
+<h4> Autores </h4>
+<p1> ROUET--COIRIER Raphaël</p1>
+<p2> PESCE Diego </p2>
+<h4> Vínculos de Interés </h4>
+<p1> 
+    <a href="https://www.ort.edu.uy/?utm_source=search&utm_medium=cpc&utm_campaign=SEARCH_2501_INSTITUCIONAL_Postgrado&utm_term=master%20educacion&utm_content=INSTITUCIONAL&gclid=Cj0KCQjwiJvQBhCYARIsAMjts3J38etYQRTX_DYPdEuvwIJzUSnUL5zcrMl5gWzP123TiuvL_DKQr_saAl73EALw_wcB
+    " target="_blank"> Página ORT: Rouet--Coirier R.</a>
+</p1>
+<p2> 
+    <a href="https://www.ort.edu.uy/?utm_source=search&utm_medium=cpc&utm_campaign=SEARCH_2501_INSTITUCIONAL_Postgrado&utm_term=master%20educacion&utm_content=INSTITUCIONAL&gclid=Cj0KCQjwiJvQBhCYARIsAMjts3J38etYQRTX_DYPdEuvwIJzUSnUL5zcrMl5gWzP123TiuvL_DKQr_saAl73EALw_wcB
+    " target="_blank"> Página ORT: Pesce D.</a>
+</p2>
+
+</footer>
+
+</html>
