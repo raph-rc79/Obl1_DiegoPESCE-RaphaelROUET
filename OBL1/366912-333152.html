@@ -1,241 +1,261 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel= “stylesheet” href="stylesheet.css"> 
+    <link rel="stylesheet" href="stylesheet.css">
     <title>Sistema de gestión</title>
 </head>
 
-<header>
-
-    <h1> Sistema de Gestión (Rouet--Coirier-Pesce)</h1>
-
-</header>
-
 <body>
+    <header>
+        <h1> Sistema de Gestión (Rouet--Coirier-Pesce)</h1>
+    </header>
 
-<h2> Manejo de Influencer </h2>
-<h3> Alta de influencer </h3>
-<button> Agregar Influencer </button>
-<h3> Datos del influencer a agregar </h3>
-<h3> Influencer</h3>
-<label> Nombre</label>
-<input type="text"> 
-<label> Mail </label>
-<input type="text"> 
-<label> % Comisión </label>
-<input type="number"> 
-<button> Cancelar </button>
-<button> Agregar </button>
-<br>
-<br>
-<br>
-<h3> Tabla de Influencers</h3>
+    <Section>
+        <h2> Manejo de Influencers </h2>
+        <article>
 
-    <table border="1">
-        
-        <thead>
-            <tr>
-                <th> Nombre </th>
-                <th> Email </th>
-                <th> % Comisión </th>
-                <th> Total a cobrar </th>
-                <th> Etiquetas </th>
-                <th> Detalle </th>
-            </tr>
-        </thead>
+            <h3> Alta de influencer </h3>
+            <button> Agregar Influencer </button>
+        </article>
 
-        <tbody>
-            <tr> 
-                <td> Ana Pérez </td>
-                <td> ana.perez@email.com </td>
-                <td> 20% </td>
-                <td> $600 </td>
-                <td>🔥​🟢</td>
-                <td> 
-                    <button type="button"> Ventas </button>
-                </td>
-            </tr>
-            <tr>
-                <td> Juan Gómez</td>
-                <td> juan.gomez@email.com</td>
-                <td> 10%</td>
-                <td> $30 </td>
-                <td></td>
-                <td> 
-                    <button type="button"> Ventas </button>
-                </td>
-            </tr>
-            <tr> 
-                <td> Lucía Martínez</td>
-                <td> lucia.martinez@email.com </td>
-                <td> 95% </td>
-                <td> $0 </td>
-                <td>🧊</td>
-                <td> 
-                    <button type="button"> Ventas </button>
-                </td>
-            </tr>
-        </tbody>
+        <article>
+            <h3> Datos del influencer a agregar </h3>
+            <h3> Influencer</h3>
+            <label> Nombre </label>
+            <input type="text">
+            <label> Mail </label>
+            <input type="text">
+            <label> % Comisión </label>
+            <input type="number">
+            <button id="b1"> Cancelar </button>
+            <button id="b1"> Agregar </button>
+        </article>
 
-    </table>
-    <br>
-    <p>Información: <span>🔥</span> Top comisión (cobra más $) <span>🧊</span> Cero ventas <span>🟢​</span> Venta más cara (mayor monto en una sola venta)</p>
-    <br>
-    <h2> Manejo de Artículos </h2>
-    <h3> Alta de Artículo </h3>
-    <button> Agregar Artículo </button>
-    <h3> Datos del artículo a agregar</h3>
-    <h3> Artículo </h3>
-    <label> Código </label>
-    <input type="number">
-    <label> Descripción </label>
-    <input type="Text">
-    <label> Precio </label>
-    <input type="Number">
-    <button> Cancelar </button>
-    <button> Agregar</button>
-    <h3> Tabla de Artículos </h3>
+        <article>
+            <h3> Tabla de Influencers</h3>
 
-    <table border="1">
+            <table>
 
-        <thead>
-            <tr>
-                <th> Código </th>
-                <th> Descripción </th>
-                <th> Precio </th>
-            </tr>
-        </thead>
+                <thead>
+                    <tr>
+                        <th>
+                            <button> Nombre ↑↓</button>
+                        </th>
+                        <th> Email </th>
+                        <th> % Comisión </th>
+                        <th> Total a cobrar </th>
+                        <th> Etiquetas </th>
+                        <th> Detalle </th>
+                    </tr>
+                </thead>
 
-        <tbody>
-            <tr> 
-                <td> A001 ⭐​</td>
-                <td> Remera algodón básica</td>
-                <td> $ 1000 </td>
-            </tr>
-            <tr> 
-                <td> A002</td>
-                <td> Zapatillas deportivas</td>
-                <td> $ 300 </td>
-            </tr>
-            <tr> 
-                <td> A003</td>
-                <td> Gorra ajustable</td>
-                <td> $ 500 </td>
-            </tr>
-        </tbody>
+                <tbody>
+                    <tr>
+                        <td> Ana Pérez </td>
+                        <td> ana.perez@email.com </td>
+                        <td> 20% </td>
+                        <td> $600 </td>
+                        <td>🔥​🟢</td>
+                        <td>
+                            <button type="button"> Ventas </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> Juan Gómez</td>
+                        <td> juan.gomez@email.com</td>
+                        <td> 10%</td>
+                        <td> $30 </td>
+                        <td></td>
+                        <td>
+                            <button type="button"> Ventas </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> Lucía Martínez</td>
+                        <td> lucia.martinez@email.com </td>
+                        <td> 95% </td>
+                        <td> $0 </td>
+                        <td>🧊</td>
+                        <td>
+                            <button type="button"> Ventas </button>
+                        </td>
+                    </tr>
+                </tbody>
 
-    </table>
-    <br>
-    <p>Información: <span>⭐​</span> Artículo más vendido (mayor cantidad de unidades vendidas</p>
+            </table>
+            <br>
+            <p>Información: <span>🔥</span> Top comisión (cobra más $) <span>🧊</span> Cero ventas <span>🟢​</span>
+                Venta más cara (mayor monto en una sola venta)</p>
+            <br>
+        </article>
 
-<h2> Ventas </h2>
-<h3> Alta de Ventas </h3>
-<button> Agregar venta </button>
-<h3> Datos de la venta a agregar </h3>
-<h3> Venta </h3>
-<label> N°: 3 Artículo </label>
-<select>
-    <option> A001</option>
-    <option> A002 </option>
-    <option> A003 </option>
-</select>
-<label> Influencer </label>
-<select>
-    <option> Diego Pesce</option>
-    <option> Raphaël Rouet--Coirier </option>
-    <option> Geronimo Ghirardi </option>
-</select>
-<label> Cantidad </label>
-<input type="Number">
-<label> Medio </label>
-<select>
-    <option> 1- Instagram </option>
-    <option> 2- Youtube </option>
-    <option selected> 3- X </option>
-    <option> 4- TikTok </option>
-    <option> 5- Facebook </option>
-    <option> 6- Otros </option>
-</select>
-<button> Cancelar </button>
-<button> Agregar</button>
-<h3> Tabla de Ventas (ordenada por número de venta)</h3>
+    </Section>
 
-    <table border="1">
+    <section>
+        <h2> Manejo de Artículos </h2>
+        <article>
+            <h3> Alta de Artículo </h3>
+            <button> Agregar Artículo </button>
+        </article>
+        <article>
+            <h3> Datos del artículo a agregar</h3>
+            <h3> Artículo </h3>
+            <label> Código </label>
+            <input type="number">
+            <label> Descripción </label>
+            <input type="Text">
+            <label> Precio </label>
+            <input type="Number">
+            <button id="b1"> Cancelar </button>
+            <button id="b1"> Agregar</button>
+        </article>
+        <article>
+            <h3> Tabla de Artículos </h3>
+            <table>
 
-        <thead>
+                <thead>
+                    <tr>
+                        <th>
+                            <button id="b1"> Código ↑↓ </button>
+                        </th>
+                        <th> Descripción </th>
+                        <th> Precio </th>
+                    </tr>
+                </thead>
 
-            <tr>
-                <th> N° venta </th>
-                <th> Código </th>
-                <th> Cantidad </th>
-                <th> Nombre Influencer"</th>
-                <th> Medio </th>
-                <th> Eliminar </th>
-            </tr>
-        </thead>
+                <tbody>
+                    <tr>
+                        <td> A001 ⭐​</td>
+                        <td> Remera algodón básica</td>
+                        <td> $ 1000 </td>
+                    </tr>
+                    <tr>
+                        <td> A002</td>
+                        <td> Zapatillas deportivas</td>
+                        <td> $ 300 </td>
+                    </tr>
+                    <tr>
+                        <td> A003</td>
+                        <td> Gorra ajustable</td>
+                        <td> $ 500 </td>
+                    </tr>
+                </tbody>
 
-        <tbody>
-            <tr> 
-                <td> 1</td>
-                <td> A001 </td>
-                <td> Diego Pesce</td>
-                <td> 3 </td>
-                <td> 6- Otros </td>
-                <td> 
-                    <button type="button">
-                        ❌​
-                    </button>
-                </td>
-            </tr>
-            <tr> 
-                <td> 2</td>
-                <td> A002 </td>
-                <td> Raphaël Rouet--Coirier </td>
-                <td> 4 </td>
-                <td> 1- Instagram </td>
-                <td> 
-                    <button type="button">
-                        ❌​
-                    </button>
-                </td>
-            </tr>
-            <tr> 
-                <td> 3</td>
-                <td> A003 </td>
-                <td> Geronimo Ghirardi </td>
-                <td> 2 </td>
-                <td> 5- Facebook </td>
-                <td> 
-                    <button type="button">
-                        ❌​
-                    </button>
-                </td>
-            </tr>
-        </tbody>
+            </table>
+            <p>Información: <span>⭐​</span> Artículo más vendido (mayor cantidad de unidades vendidas)</p>
+        </article>
 
-    </table>
+    </section>
+    <section>
+        <h2> Ventas </h2>
+        <article>
+            <h3> Alta de Ventas </h3>
+            <button> Agregar venta </button>
+        </article>
+        <article>
+            <h3> Datos de la venta a agregar </h3>
+            <h3> Venta </h3>
+            <label class="l3"> Nro 3: </label>
+           
+            <label> Artículo </label>
+            <select>
+                <option> A001</option>
+                <option> A002 </option>
+                <option> A003 </option>
+            </select>
+            <label> Influencer </label>
+            <select>
+                <option> Ana Pérez </option>
+                <option> Juan Gómez </option>
+                <option> Lucía Martínez </option>
+            </select>
+            <label> Cantidad </label>
+            <input type="Number">
+            <label> Medio </label>
+            <select>
+                <option selected> 1- Instagram </option>
+                <option> 2- Youtube </option>
+                <option> 3- X </option>
+                <option> 4- TikTok </option>
+                <option> 5- Facebook </option>
+                <option> 6- Otros </option>
+            </select>
+            <button id="b1"> Cancelar </button>
+            <button id="b1"> Agregar</button>
+        </article>
+        <article>
+            <h3> Tabla de Ventas (ordenada por número de venta)</h3>
 
-    <h3> Gráfico de burbujas </h3>
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th> Nro Venta </th>
+                        <th> Código </th>
+                        <th> Nombre de influencer </th>
+                        <th> Cantidad </th>
+                        <th> Medio </th>
+                        <th> Acción </th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td> 1</td>
+                        <td> A001 </td>
+                        <td> Ana Pérez </td>
+                        <td> 3 </td>
+                        <td> 1- Instagram </td>
+                        <td>
+                            <button type="button">
+                                ❌​
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> 2</td>
+                        <td> A002 </td>
+                        <td> Juan Gómez </td>
+                        <td> 1 </td>
+                        <td> 2- Youtube </td>
+                        <td>
+                            <button type="button">
+                                ❌​
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </article>
+        <article>
+            <h3> Gráfico de burbujas </h3>
+        </article>
+    </section>
+
+    <footer>
+
+        <h4> Autores </h4>
+        <p> ROUET--COIRIER Raphaël</p>
+        <p> PESCE Diego </p>
+        <h4> Vínculos de Interés </h4>
+        <p>
+            <a href="https://www.ort.edu.uy/?utm_source=search&utm_medium=cpc&utm_campaign=SEARCH_2501_INSTITUCIONAL_Postgrado&utm_term=master%20educacion&utm_content=INSTITUCIONAL&gclid=Cj0KCQjwiJvQBhCYARIsAMjts3J38etYQRTX_DYPdEuvwIJzUSnUL5zcrMl5gWzP123TiuvL_DKQr_saAl73EALw_wcB
+                " target="_blank"> Página ORT: Rouet--Coirier R.</a>
+        </p>
+        <p>
+            <a href="https://www.ort.edu.uy/?utm_source=search&utm_medium=cpc&utm_campaign=SEARCH_2501_INSTITUCIONAL_Postgrado&utm_term=master%20educacion&utm_content=INSTITUCIONAL&gclid=Cj0KCQjwiJvQBhCYARIsAMjts3J38etYQRTX_DYPdEuvwIJzUSnUL5zcrMl5gWzP123TiuvL_DKQr_saAl73EALw_wcB
+            " target="_blank"> Página ORT: Pesce D.</a>
+        </p>
+
+    </footer>
 
 </body>
 
-<footer>
 
-<h4> Autores </h4>
-<p1> ROUET--COIRIER Raphaël</p1>
-<p2> PESCE Diego </p2>
-<h4> Vínculos de Interés </h4>
-<p1> 
-    <a href="https://www.ort.edu.uy/?utm_source=search&utm_medium=cpc&utm_campaign=SEARCH_2501_INSTITUCIONAL_Postgrado&utm_term=master%20educacion&utm_content=INSTITUCIONAL&gclid=Cj0KCQjwiJvQBhCYARIsAMjts3J38etYQRTX_DYPdEuvwIJzUSnUL5zcrMl5gWzP123TiuvL_DKQr_saAl73EALw_wcB
-    " target="_blank"> Página ORT: Rouet--Coirier R.</a>
-</p1>
-<p2> 
-    <a href="https://www.ort.edu.uy/?utm_source=search&utm_medium=cpc&utm_campaign=SEARCH_2501_INSTITUCIONAL_Postgrado&utm_term=master%20educacion&utm_content=INSTITUCIONAL&gclid=Cj0KCQjwiJvQBhCYARIsAMjts3J38etYQRTX_DYPdEuvwIJzUSnUL5zcrMl5gWzP123TiuvL_DKQr_saAl73EALw_wcB
-    " target="_blank"> Página ORT: Pesce D.</a>
-</p2>
-
-</footer>
 
 </html>
