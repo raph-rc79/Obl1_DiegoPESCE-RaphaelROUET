@@ -1,5 +1,7 @@
+//ROUET--COIRIER Raphaël PESCE Diego
 class Sistema {
     constructor() {
+}
 }
 class Influencer {
     constructor(nombre, apellido, mail, comisión) {

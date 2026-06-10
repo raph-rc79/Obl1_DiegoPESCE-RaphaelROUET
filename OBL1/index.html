@@ -1,11 +1,15 @@
+<!-- ROUET--COIRIER Raphaël PESCE Diego-->
+
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="stylesheet.css">
+    <link rel="stylesheet" href="css/estilo.css">
     <title>Sistema de gestión</title>
+    <script src="js/clases.js"></script>
+    <script src="js/funciones.js"></script>
 </head>
 
 <body>
@@ -18,20 +22,24 @@
         <article>
 
             <h3> Alta de influencer </h3>
-            <button> Agregar Influencer </button>
-        </article>
+            <button id="b1"> Agregar Influencer </button>
+            <dialog id="d1">
+                <h2> Datos del Influencer a agregar </h2>
+                <h2> Influencer</h2>
+                <article>
+                    <h3> Datos del influencer a agregar </h3>
+                    <h3> Influencer</h3>
+                    <label> Nombre </label>
+                    <input type="text">
+                    <label> Mail </label>
+                    <input type="text">
+                    <label id="l1"> % Comisión </label>
+                    <input type="number">
+                    <button id="c1"> Cancelar </button>
+                    <button id="a1"> Agregar </button>
+                </article>
+            </dialog>
 
-        <article>
-            <h3> Datos del influencer a agregar </h3>
-            <h3> Influencer</h3>
-            <label> Nombre </label>
-            <input type="text">
-            <label> Mail </label>
-            <input type="text">
-            <label> % Comisión </label>
-            <input type="number">
-            <button id="b1"> Cancelar </button>
-            <button id="b1"> Agregar </button>
         </article>
 
         <article>
@@ -98,20 +106,25 @@
         <h2> Manejo de Artículos </h2>
         <article>
             <h3> Alta de Artículo </h3>
-            <button> Agregar Artículo </button>
+            <button id="b2"> Agregar Artículo </button>
+            <dialog id="d2">
+                <h2> Datos del Artículo a agregar </h2>
+                <h2> Artículo</h2>
+                <article>
+                    <h3> Datos del artículo a agregar </h3>
+                    <h3> Artículo</h3>
+                    <label> Código </label>
+                    <input type="text">
+                    <label> Descripción </label>
+                    <input type="text">
+                    <label id="l2"> Precio </label>
+                    <input type="number">
+                    <button id="c2"> Cancelar </button>
+                    <button id="a2"> Agregar </button>
+                </article>
+            </dialog>
         </article>
-        <article>
-            <h3> Datos del artículo a agregar</h3>
-            <h3> Artículo </h3>
-            <label> Código </label>
-            <input type="number">
-            <label> Descripción </label>
-            <input type="Text">
-            <label> Precio </label>
-            <input type="Number">
-            <button id="b1"> Cancelar </button>
-            <button id="b1"> Agregar</button>
-        </article>
+       
         <article>
             <h3> Tabla de Artículos </h3>
             <table>
@@ -119,7 +132,7 @@
                 <thead>
                     <tr>
                         <th>
-                            <button id="b1"> Código ↑↓ </button>
+                            <button id="b3"> Código ↑↓ </button>
                         </th>
                         <th> Descripción </th>
                         <th> Precio </th>
@@ -153,39 +166,32 @@
         <h2> Ventas </h2>
         <article>
             <h3> Alta de Ventas </h3>
-            <button> Agregar venta </button>
+            <button id="b4"> Agregar venta </button>
+            <dialog id="d4">
+                <h2> Datos de la venta a agregar </h2>
+                <h2> Venta</h2>
+                <article>
+                    <h3> Datos de la venta a agregar </h3>
+                    <h3> Venta</h3>
+                    <label> Código del artículo </label>
+                    <input type="text">
+                    <label> Nombre del influencer </label>
+                    <input type="text">
+                    <label id="l3"> Cantidad </label>
+                    <input type="number">
+                    <label> Medio </label>
+                    <select>
+                        <option value="1"> Instagram </option>
+                        <option value="2"> Youtube </option>
+                        <option value="3"> TikTok </option>
+                        <option value="4"> Facebook </option>
+                    </select>
+                    <button id="c3"> Cancelar </button>
+                    <button id="a3"> Agregar </button>
+                </article>
+            </dialog>
         </article>
-        <article>
-            <h3> Datos de la venta a agregar </h3>
-            <h3> Venta </h3>
-            <label class="l3"> Nro 3: </label>
-           
-            <label> Artículo </label>
-            <select>
-                <option> A001</option>
-                <option> A002 </option>
-                <option> A003 </option>
-            </select>
-            <label> Influencer </label>
-            <select>
-                <option> Ana Pérez </option>
-                <option> Juan Gómez </option>
-                <option> Lucía Martínez </option>
-            </select>
-            <label> Cantidad </label>
-            <input type="Number">
-            <label> Medio </label>
-            <select>
-                <option selected> 1- Instagram </option>
-                <option> 2- Youtube </option>
-                <option> 3- X </option>
-                <option> 4- TikTok </option>
-                <option> 5- Facebook </option>
-                <option> 6- Otros </option>
-            </select>
-            <button id="b1"> Cancelar </button>
-            <button id="b1"> Agregar</button>
-        </article>
+        
         <article>
             <h3> Tabla de Ventas (ordenada por número de venta)</h3>
 

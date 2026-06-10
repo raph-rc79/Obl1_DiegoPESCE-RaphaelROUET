@@ -30,7 +30,7 @@ button{
     text-align: center;
     color: white;
 }
-.b1{
+#a1,#a2,#a3,#b1,#b2,#b3,#c1,#c2,#c3{
     background-color:#0EA5B7;
     border-radius: 10px;
     border:none;
