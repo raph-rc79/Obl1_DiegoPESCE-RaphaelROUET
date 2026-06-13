@@ -1,26 +1,30 @@
 //ROUET--COIRIER Raphaël PESCE Diego
 class Sistema {
     constructor() {
-}
-}
-class Influencer {
-    constructor(nombre, apellido, mail, comisión) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.mail = mail;
-        this.comisión = comisión;
+        this.influencers = [];
+        this.articulos = [];
+        this.ventas = [];
+        this.proximoNumeroVenta = 1;
     }
 }
-class Artículo {
-    constructor(código, descripción, precio) {
-        this.código = código; 
-        this.descripción = descripción;
+class Influencer {
+    constructor(nombre, mail, comision) {
+        this.nombre = nombre;
+        this.mail = mail;
+        this.comision = comision;
+    }
+}
+class Articulo {
+    constructor(codigo, descripcion, precio) {
+        this.codigo = codigo;
+        this.descripcion = descripcion;
         this.precio = precio;
     }
 }
 class Venta {
-    constructor(nro_artículo, influencer, cantidad, medio) {
-        this.nro_artículo = nro_artículo;
+    constructor(numero, articulo, influencer, cantidad, medio) {
+        this.numero = numero;
+        this.articulo = articulo;
         this.influencer = influencer;
         this.cantidad = cantidad;
         this.medio = medio;
