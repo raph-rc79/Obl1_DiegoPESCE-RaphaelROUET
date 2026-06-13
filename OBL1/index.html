@@ -29,12 +29,12 @@
                 <article>
                     <h3> Datos del influencer a agregar </h3>
                     <h3> Influencer</h3>
-                    <label> Nombre </label>
-                    <input type="text">
-                    <label> Mail </label>
-                    <input type="text">
-                    <label id="l1"> % Comisión </label>
-                    <input type="number">
+                    <label > Nombre </label>
+                    <input type="text" id="i1a">
+                    <label > Mail </label>
+                    <input type="text" id="i1b">
+                    <label > % Comisión </label>
+                    <input type="number" id="i1c">
                     <button id="c1"> Cancelar </button>
                     <button id="a1"> Agregar </button>
                 </article>
@@ -45,7 +45,7 @@
         <article>
             <h3> Tabla de Influencers</h3>
 
-            <table>
+            <table id="t1">
 
                 <thead>
                     <tr>
@@ -61,36 +61,7 @@
                 </thead>
 
                 <tbody>
-                    <tr>
-                        <td> Ana Pérez </td>
-                        <td> ana.perez@email.com </td>
-                        <td> 20% </td>
-                        <td> $600 </td>
-                        <td>🔥​🟢</td>
-                        <td>
-                            <button type="button"> Ventas </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td> Juan Gómez</td>
-                        <td> juan.gomez@email.com</td>
-                        <td> 10%</td>
-                        <td> $30 </td>
-                        <td></td>
-                        <td>
-                            <button type="button"> Ventas </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td> Lucía Martínez</td>
-                        <td> lucia.martinez@email.com </td>
-                        <td> 95% </td>
-                        <td> $0 </td>
-                        <td>🧊</td>
-                        <td>
-                            <button type="button"> Ventas </button>
-                        </td>
-                    </tr>
+                    
                 </tbody>
 
             </table>
@@ -114,11 +85,11 @@
                     <h3> Datos del artículo a agregar </h3>
                     <h3> Artículo</h3>
                     <label> Código </label>
-                    <input type="text">
+                    <input type="text" id="i2a">
                     <label> Descripción </label>
-                    <input type="text">
+                    <input type="text" id="i2b">
                     <label id="l2"> Precio </label>
-                    <input type="number">
+                    <input type="number" id="i2c">
                     <button id="c2"> Cancelar </button>
                     <button id="a2"> Agregar </button>
                 </article>
@@ -127,7 +98,7 @@
        
         <article>
             <h3> Tabla de Artículos </h3>
-            <table>
+            <table id="t2">
 
                 <thead>
                     <tr>
@@ -141,20 +112,7 @@
 
                 <tbody>
                     <tr>
-                        <td> A001 ⭐​</td>
-                        <td> Remera algodón básica</td>
-                        <td> $ 1000 </td>
-                    </tr>
-                    <tr>
-                        <td> A002</td>
-                        <td> Zapatillas deportivas</td>
-                        <td> $ 300 </td>
-                    </tr>
-                    <tr>
-                        <td> A003</td>
-                        <td> Gorra ajustable</td>
-                        <td> $ 500 </td>
-                    </tr>
+                 
                 </tbody>
 
             </table>
@@ -174,13 +132,13 @@
                     <h3> Datos de la venta a agregar </h3>
                     <h3> Venta</h3>
                     <label> Código del artículo </label>
-                    <input type="text">
+                    <input type="text" id="i3a">
                     <label> Nombre del influencer </label>
-                    <input type="text">
+                    <input type="text" id="i3b">
                     <label id="l3"> Cantidad </label>
-                    <input type="number">
+                    <input type="number" id="i3c">
                     <label> Medio </label>
-                    <select>
+                    <select id="i3d">
                         <option value="1"> Instagram </option>
                         <option value="2"> Youtube </option>
                         <option value="3"> TikTok </option>
@@ -195,7 +153,7 @@
         <article>
             <h3> Tabla de Ventas (ordenada por número de venta)</h3>
 
-            <table>
+            <table id="t3">
 
                 <thead>
 
@@ -210,30 +168,7 @@
                 </thead>
 
                 <tbody>
-                    <tr>
-                        <td> 1</td>
-                        <td> A001 </td>
-                        <td> Ana Pérez </td>
-                        <td> 3 </td>
-                        <td> 1- Instagram </td>
-                        <td>
-                            <button type="button">
-                                ❌​
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td> 2</td>
-                        <td> A002 </td>
-                        <td> Juan Gómez </td>
-                        <td> 1 </td>
-                        <td> 2- Youtube </td>
-                        <td>
-                            <button type="button">
-                                ❌​
-                            </button>
-                        </td>
-                    </tr>
+                    
                 </tbody>
 
             </table>
