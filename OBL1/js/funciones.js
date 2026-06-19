@@ -1,6 +1,6 @@
 //ROUET--COIRIER Raphaël PESCE Diego
 let sistema = new Sistema();
-let n= 1;
+//formulario influencer
 window.addEventListener("load", () => {
   const buttonopen = document.getElementById("b1");
   const buttonclose = document.getElementById("c1");
@@ -11,9 +11,13 @@ window.addEventListener("load", () => {
   });
   buttonclose.addEventListener("click", () => {
     dialog.close();
+    document.getElementById("i1a").value="";
+    document.getElementById("i1b").value="";
+    document.getElementById("i1c").value="";
   });
 });
 
+//formulario artículo
 window.addEventListener("load", () => {
   const buttonopen = document.getElementById("b2");
   const buttonclose = document.getElementById("c2");
@@ -24,9 +28,13 @@ window.addEventListener("load", () => {
   });
   buttonclose.addEventListener("click", () => {
     dialog.close();
+    document.getElementById("i2a").value="";
+    document.getElementById("i2b").value="";
+    document.getElementById("i2c").value="";
   });
 });
 
+//formulario venta
 window.addEventListener("load", () => {
   const buttonopen = document.getElementById("b4");
   const buttonclose = document.getElementById("c3");
@@ -37,9 +45,11 @@ window.addEventListener("load", () => {
   });
   buttonclose.addEventListener("click", () => {
     dialog.close();
+    
   });
 });
 
+//funcionalidad formulario Influencer
 window.addEventListener("load", () => {
   const n = document.getElementById("i1a");
   const m = document.getElementById("i1b");
@@ -58,9 +68,13 @@ window.addEventListener("load", () => {
     cell1.textContent= influencer.nombre;
     cell2.textContent= influencer.mail;
     cell3.textContent= influencer.comision + "%";
+    document.getElementById("i1a").value="";
+    document.getElementById("i1b").value="";
+    document.getElementById("i1c").value="";
   });
 })
 
+//funcionalidad formulario artículo
 window.addEventListener("load", () => {
   const c = document.getElementById("i2a");
   const d = document.getElementById("i2b");
@@ -79,11 +93,16 @@ window.addEventListener("load", () => {
     cell1.textContent= artículo.codigo;
     cell2.textContent= artículo.descripcion;
     cell3.textContent= artículo.precio;
+    document.getElementById("i2a").value="";
+    document.getElementById("i2b").value="";
+    document.getElementById("i2c").value="";
   });
 })
 
+
+//funcionalidad formulario venta
 window.addEventListener("load", () => {
-  n++;
+  let n = sistema.proximoNumeroVenta;
   const a = document.getElementById("i3a");
   const i = document.getElementById("i3b");
   const c = document.getElementById("i3c");
@@ -92,8 +111,9 @@ window.addEventListener("load", () => {
   const buttonadd = document.getElementById("a3");
 
   buttonadd.addEventListener("click", () => {
-    let venta = new Venta (n.value, a.value, i.value, Number(c.value), m);
+    let venta = new Venta (n, a.value, i.value, Number(c.value), m);
     sistema.ventas.push(venta);
+
     const table = document.getElementById("t3");
     const row = table.insertRow();
     const cell1 = row.insertCell();
@@ -106,6 +126,16 @@ window.addEventListener("load", () => {
     cell3.textContent= venta.influencer;
     cell4.textContent= venta.cantidad;
     cell5.textContent= venta.medio;
+    document.getElementById("i3a").value="";
+    document.getElementById("i3b").value="";
+    document.getElementById("i3c").value="";
+    sistema.proximoNumeroVenta++;
   });
 })
+
+//boton ordenar tabla de artículos
+window.addEventListener("load", () => {
+  const button= getElementById("b3");
+  button.addEventListener("click", () => {
+
 

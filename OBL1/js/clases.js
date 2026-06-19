@@ -1,4 +1,5 @@
 //ROUET--COIRIER Raphaël PESCE Diego
+
 class Sistema {
     constructor() {
         this.influencers = [];
