@@ -55,10 +55,17 @@ window.addEventListener("load", () => {
   const m = document.getElementById("i1b");
   const c = document.getElementById("i1c");
   const buttonadd = document.getElementById("a1");
+  let valor = 5;
 
   buttonadd.addEventListener("click", () => {
     let influencer = new Influencer(n.value, m.value, Number(c.value));
     sistema.influencers.push(influencer);
+    
+    valor++;
+    let option = document.createElement("option");
+    option.value= valor;
+    option.text= influencer.nombre;
+    document.getElementById("i3b").appendChild(option);
 
     const table = document.getElementById("t1");
     const row = table.insertRow();
@@ -80,11 +87,18 @@ window.addEventListener("load", () => {
   const d = document.getElementById("i2b");
   const p = document.getElementById("i2c");
   const buttonadd = document.getElementById("a2");
+  let valor = 5;
 
   buttonadd.addEventListener("click", () => {
     let artículo = new Articulo (c.value, d.value, Number(p.value));
     sistema.articulos.push(artículo);
 
+    valor++;
+    let option = document.createElement("option");
+    option.value= valor;
+    option.text= artículo.codigo;
+    document.getElementById("i3a").appendChild(option);
+    
     const table = document.getElementById("t2");
     const row = table.insertRow();
     const cell1 = row.insertCell();
@@ -102,7 +116,6 @@ window.addEventListener("load", () => {
 
 //funcionalidad formulario venta
 window.addEventListener("load", () => {
-  let n = sistema.proximoNumeroVenta;
   const a = document.getElementById("i3a");
   const i = document.getElementById("i3b");
   const c = document.getElementById("i3c");
@@ -111,8 +124,9 @@ window.addEventListener("load", () => {
   const buttonadd = document.getElementById("a3");
 
   buttonadd.addEventListener("click", () => {
-    let venta = new Venta (n, a.value, i.value, Number(c.value), m);
+    let venta = new Venta (sistema.proximoNumeroVenta, a.value, i.value, Number(c.value), m);
     sistema.ventas.push(venta);
+    sistema.proximoNumeroVenta= sistema.proximoNumeroVenta + 1;
 
     const table = document.getElementById("t3");
     const row = table.insertRow();
@@ -126,16 +140,7 @@ window.addEventListener("load", () => {
     cell3.textContent= venta.influencer;
     cell4.textContent= venta.cantidad;
     cell5.textContent= venta.medio;
-    document.getElementById("i3a").value="";
-    document.getElementById("i3b").value="";
-    document.getElementById("i3c").value="";
-    sistema.proximoNumeroVenta++;
   });
 })
-
-//boton ordenar tabla de artículos
-window.addEventListener("load", () => {
-  const button= getElementById("b3");
-  button.addEventListener("click", () => {
 
 
