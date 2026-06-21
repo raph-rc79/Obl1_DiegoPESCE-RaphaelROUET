@@ -11,9 +11,9 @@ window.addEventListener("load", () => {
   });
   buttonclose.addEventListener("click", () => {
     dialog.close();
-    document.getElementById("i1a").value="";
-    document.getElementById("i1b").value="";
-    document.getElementById("i1c").value="";
+    document.getElementById("i1a").value = "";
+    document.getElementById("i1b").value = "";
+    document.getElementById("i1c").value = "";
   });
 });
 
@@ -28,9 +28,9 @@ window.addEventListener("load", () => {
   });
   buttonclose.addEventListener("click", () => {
     dialog.close();
-    document.getElementById("i2a").value="";
-    document.getElementById("i2b").value="";
-    document.getElementById("i2c").value="";
+    document.getElementById("i2a").value = "";
+    document.getElementById("i2b").value = "";
+    document.getElementById("i2c").value = "";
   });
 });
 
@@ -41,11 +41,20 @@ window.addEventListener("load", () => {
   const dialog = document.getElementById("d4");
 
   buttonopen.addEventListener("click", () => {
+    if (sistema.articulos.length === 0) {
+      alert("Debe existir al menos un artículo");
+      return;
+    }
+
+    if (sistema.influencers.length === 0) {
+      alert("Debe existir al menos un influencer");
+      return;
+    }
+
     dialog.showModal();
   });
   buttonclose.addEventListener("click", () => {
     dialog.close();
-    
   });
 });
 
@@ -58,13 +67,27 @@ window.addEventListener("load", () => {
   let valor = 5;
 
   buttonadd.addEventListener("click", () => {
+    if (
+      n.value.trim() === "" ||
+      m.value.trim() === "" ||
+      c.value.trim() === ""
+    ) {
+      alert("Todos los campos son obligatorios");
+      return;
+    }
+    let existeMail = sistema.influencers.some((inf) => inf.mail === m.value);
+
+    if (existeMail) {
+      alert("Ya existe un influencer con ese mail");
+      return;
+    }
     let influencer = new Influencer(n.value, m.value, Number(c.value));
     sistema.influencers.push(influencer);
-    
+
     valor++;
     let option = document.createElement("option");
-    option.value= valor;
-    option.text= influencer.nombre;
+    option.value = influencer.nombre;
+    option.text = influencer.nombre;
     document.getElementById("i3b").appendChild(option);
 
     const table = document.getElementById("t1");
@@ -72,14 +95,14 @@ window.addEventListener("load", () => {
     const cell1 = row.insertCell();
     const cell2 = row.insertCell();
     const cell3 = row.insertCell();
-    cell1.textContent= influencer.nombre;
-    cell2.textContent= influencer.mail;
-    cell3.textContent= influencer.comision + "%";
-    document.getElementById("i1a").value="";
-    document.getElementById("i1b").value="";
-    document.getElementById("i1c").value="";
+    cell1.textContent = influencer.nombre;
+    cell2.textContent = influencer.mail;
+    cell3.textContent = influencer.comision + "%";
+    document.getElementById("i1a").value = "";
+    document.getElementById("i1b").value = "";
+    document.getElementById("i1c").value = "";
   });
-})
+});
 
 //funcionalidad formulario artículo
 window.addEventListener("load", () => {
@@ -90,29 +113,44 @@ window.addEventListener("load", () => {
   let valor = 5;
 
   buttonadd.addEventListener("click", () => {
-    let artículo = new Articulo (c.value, d.value, Number(p.value));
+    if (
+      c.value.trim() === "" ||
+      d.value.trim() === "" ||
+      p.value.trim() === ""
+    ) {
+      alert("Todos los campos son obligatorios");
+      return;
+    }
+
+    let existeCodigo = sistema.articulos.some((art) => art.codigo === c.value);
+
+    if (existeCodigo) {
+      alert("Ya existe un artículo con ese código");
+      return;
+    }
+
+    let artículo = new Articulo(c.value, d.value, Number(p.value));
     sistema.articulos.push(artículo);
 
     valor++;
     let option = document.createElement("option");
-    option.value= valor;
-    option.text= artículo.codigo;
+    option.value = artículo.codigo;
+    option.text = artículo.codigo;
     document.getElementById("i3a").appendChild(option);
-    
+
     const table = document.getElementById("t2");
     const row = table.insertRow();
     const cell1 = row.insertCell();
     const cell2 = row.insertCell();
     const cell3 = row.insertCell();
-    cell1.textContent= artículo.codigo;
-    cell2.textContent= artículo.descripcion;
-    cell3.textContent= artículo.precio;
-    document.getElementById("i2a").value="";
-    document.getElementById("i2b").value="";
-    document.getElementById("i2c").value="";
+    cell1.textContent = artículo.codigo;
+    cell2.textContent = artículo.descripcion;
+    cell3.textContent = artículo.precio;
+    document.getElementById("i2a").value = "";
+    document.getElementById("i2b").value = "";
+    document.getElementById("i2c").value = "";
   });
-})
-
+});
 
 //funcionalidad formulario venta
 window.addEventListener("load", () => {
@@ -120,13 +158,19 @@ window.addEventListener("load", () => {
   const i = document.getElementById("i3b");
   const c = document.getElementById("i3c");
   const select = document.getElementById("i3d");
-  const m = select.options[select.selectedIndex].text;
   const buttonadd = document.getElementById("a3");
 
   buttonadd.addEventListener("click", () => {
-    let venta = new Venta (sistema.proximoNumeroVenta, a.value, i.value, Number(c.value), m);
+    let m = select.options[select.selectedIndex].text;
+    let venta = new Venta(
+      sistema.proximoNumeroVenta,
+      a.value,
+      i.value,
+      Number(c.value),
+      m,
+    );
     sistema.ventas.push(venta);
-    sistema.proximoNumeroVenta= sistema.proximoNumeroVenta + 1;
+    sistema.proximoNumeroVenta = sistema.proximoNumeroVenta + 1;
 
     const table = document.getElementById("t3");
     const row = table.insertRow();
@@ -135,12 +179,10 @@ window.addEventListener("load", () => {
     const cell3 = row.insertCell();
     const cell4 = row.insertCell();
     const cell5 = row.insertCell();
-    cell1.textContent= venta.numero;
-    cell2.textContent= venta.articulo;
-    cell3.textContent= venta.influencer;
-    cell4.textContent= venta.cantidad;
-    cell5.textContent= venta.medio;
+    cell1.textContent = venta.numero;
+    cell2.textContent = venta.articulo;
+    cell3.textContent = venta.influencer;
+    cell4.textContent = venta.cantidad;
+    cell5.textContent = venta.medio;
   });
-})
-
-
+});
