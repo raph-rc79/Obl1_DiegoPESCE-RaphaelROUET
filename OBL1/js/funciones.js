@@ -1,4 +1,5 @@
 //ROUET--COIRIER Raphaël PESCE Diego
+
 let sistema = new Sistema();
 //formulario influencer
 window.addEventListener("load", () => {
@@ -41,15 +42,19 @@ window.addEventListener("load", () => {
   const dialog = document.getElementById("d4");
 
   buttonopen.addEventListener("click", () => {
+    if (sistema.influencers.length === 0 && sistema.articulos.length === 0){
+      alert("Debe existir al menos un influencer y un artículo");
+      return;
+    }
     if (sistema.articulos.length === 0) {
       alert("Debe existir al menos un artículo");
       return;
     }
-
     if (sistema.influencers.length === 0) {
       alert("Debe existir al menos un influencer");
       return;
     }
+    
 
     dialog.showModal();
   });
