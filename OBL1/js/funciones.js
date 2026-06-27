@@ -126,6 +126,10 @@ window.addEventListener("load", () => {
         option.value = influencer.nombre;
         option.text = influencer.nombre;
         opcionesInfluencer.appendChild(option);
+        
+        n.value = "";
+        m.value = "";
+        c.value = "";
       }
     }
   });
@@ -187,9 +191,11 @@ window.addEventListener("load", () => {
         cell1.textContent = artículo.codigo;
         cell2.textContent = artículo.descripcion;
         cell3.textContent = artículo.precio;
-        document.getElementById("i2a").value = "";
-        document.getElementById("i2b").value = "";
-        document.getElementById("i2c").value = "";
+
+        c.value = "";
+        d.value = "";
+        p.value = "";
+
       }
     }
   });
@@ -220,6 +226,8 @@ window.addEventListener("load", () => {
       let venta = new Venta(sistema.proximoNumeroVenta, a.value, i.value, Number(c.value), m);
       sistema.ventas.push(venta);
       sistema.proximoNumeroVenta = sistema.proximoNumeroVenta + 1;
+
+      c.value = "";
     }
   });
 });
@@ -227,6 +235,10 @@ window.addEventListener("load", () => {
 //tabla ordenada infuencer
 window.addEventListener("load", () => {
   const buttonOrder = document.getElementById("o1");
+  const buttonAdd = document.getElementById("a1");
+  buttonAdd.addEventListener("click", () =>{
+    tablaInfluencers();
+  })
   buttonOrder.addEventListener("click", () => {
     ordenarInfluencers();
     tablaInfluencers();
@@ -241,7 +253,7 @@ function compararNombre(influencer1, influencer2) {
   return resultado;
 }
 function tablaInfluencers() {
-  const tabla = document.getElementById("t3");
+  const tabla = document.getElementById("t1");
   tabla.innerHTML = "";
   for (let pos = 0; pos < sistema.influencers.length; pos++) {
     const fila = document.createElement("tr");
