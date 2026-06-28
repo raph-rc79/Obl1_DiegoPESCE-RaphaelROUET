@@ -456,7 +456,8 @@ function graficoBurbujas() {
       }
     }
 
-    let totalVenta = precioArticulo * venta.cantidad;
+    let totalVenta = 0;
+    totalVenta = totalVenta + precioArticulo * venta.cantidad;
 
     for (let posMedio = 0; posMedio < medios.length; posMedio = posMedio + 1) {
       if (venta.medio.trim() === medios[posMedio]) {
@@ -486,6 +487,7 @@ function graficoBurbujas() {
 
     burbuja.style.width = tamaño + "px";
     burbuja.style.height = tamaño + "px";
+    burbuja.style.lineHeight = tamaño + "px";
 
     burbuja.textContent = "$" + totales[pos];
 
@@ -675,3 +677,4 @@ function obtenerEtiquetaArticulo(articulo) {
 
   return etiqueta;
 }
+window.addEventListener("load", graficoBurbujas)
