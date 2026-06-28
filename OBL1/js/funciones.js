@@ -379,7 +379,7 @@ function tablaVentas() {
     let celdaAccion = document.createElement("td");
 
     let botonEliminar = document.createElement("button");
-    botonEliminar.textContent = "Eliminar";
+    botonEliminar.textContent = "❌";
 
     botonEliminar.addEventListener("click", () => {
       let confirma = confirm("¿Está seguro de eliminar esta venta?");
@@ -617,24 +617,21 @@ function mostrarDetalleVentasInfluencer(influencer) {
 
       mensaje =
         mensaje +
-        "Venta Nro: " +
+        "Nro " +
         sistema.ventas[pos].numero +
-        "\n" +
-        "Cantidad: " +
+        "-> " +
         sistema.ventas[pos].cantidad +
-        "\n" +
-        "Artículo: " +
+        "->"+
         sistema.ventas[pos].articulo +
-        "\n" +
-        "Precio unitario: $" +
+        "-> "+"$"+
         precioUnitario +
-        "\n" +
+        "c/u "+
         "Total: $" +
         totalVenta +
-        "\n" +
+        "-> "+
         "Comisión: $" +
         comision +
-        "\n\n";
+        "\n"
     }
   }
 

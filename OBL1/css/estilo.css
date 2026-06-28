@@ -75,3 +75,6 @@ select{
     color: white;
     margin: auto;
 }
+dialog{
+    border-radius:10px;
+}
