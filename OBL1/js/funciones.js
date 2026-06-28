@@ -478,14 +478,14 @@ function graficoBurbujas() {
     burbuja.className = "burbuja";
     burbuja.style.backgroundColor = colores[pos];
 
-    let tamanio = 30;
+    let tamaño = 30;
 
     if (maximo > 0) {
-      tamanio = 30 + (totales[pos] / maximo) * 120;
+      tamaño = 30 + (totales[pos] / maximo) * 120;
     }
 
-    burbuja.style.width = tamanio + "px";
-    burbuja.style.height = tamanio + "px";
+    burbuja.style.width = tamaño + "px";
+    burbuja.style.height = tamaño + "px";
 
     burbuja.textContent = "$" + totales[pos];
 
