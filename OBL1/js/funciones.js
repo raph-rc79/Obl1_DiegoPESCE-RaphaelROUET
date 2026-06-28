@@ -19,7 +19,6 @@ window.addEventListener("load", () => {
     document.getElementById("i1c").value = "";
   });
 });
-
 //formulario artículo
 window.addEventListener("load", () => {
   const buttonopen = document.getElementById("b2");
@@ -36,7 +35,6 @@ window.addEventListener("load", () => {
     document.getElementById("i2c").value = "";
   });
 });
-
 //formulario venta
 window.addEventListener("load", () => {
   const buttonopen = document.getElementById("b4");
@@ -75,7 +73,6 @@ window.addEventListener("load", () => {
     dialog.close();
   });
 });
-
 //funcionalidad formulario Influencer
 window.addEventListener("load", () => {
   const n = document.getElementById("i1a");
@@ -130,7 +127,6 @@ window.addEventListener("load", () => {
     }
   });
 });
-
 //funcionalidad formulario artículo
 window.addEventListener("load", () => {
   const c = document.getElementById("i2a");
@@ -202,7 +198,6 @@ window.addEventListener("load", () => {
     tablaArticulos();
   });
 });
-
 //funcionalidad formulario venta
 window.addEventListener("load", () => {
   const a = document.getElementById("i3a");
@@ -241,7 +236,6 @@ window.addEventListener("load", () => {
     }
   });
 });
-
 //tabla ordenada influencer
 window.addEventListener("load", () => {
   const buttonOrder = document.getElementById("o1");
@@ -263,7 +257,6 @@ window.addEventListener("load", () => {
     tablaInfluencers();
   });
 });
-
 function ordenarInfluencers() {
   if (ordenActualInfluencer === "ascendente") {
     sistema.influencers.sort(compararNombreAscendente);
@@ -271,17 +264,14 @@ function ordenarInfluencers() {
     sistema.influencers.sort(compararNombreDescendente);
   }
 }
-
 function compararNombreAscendente(influencer1, influencer2) {
   let resultado = influencer1.nombre.localeCompare(influencer2.nombre);
   return resultado;
 }
-
 function compararNombreDescendente(influencer1, influencer2) {
   let resultado = influencer2.nombre.localeCompare(influencer1.nombre);
   return resultado;
 }
-
 //funcion tabla ordenada articulos
 function ordenarArticulos() {
   if (ordenActualArticulo === "ascendente") {
@@ -290,17 +280,14 @@ function ordenarArticulos() {
     sistema.articulos.sort(compararCodigoDescendente);
   }
 }
-
 function compararCodigoAscendente(articulo1, articulo2) {
   let resultado = articulo1.codigo.localeCompare(articulo2.codigo);
   return resultado;
 }
-
 function compararCodigoDescendente(articulo1, articulo2) {
   let resultado = articulo2.codigo.localeCompare(articulo1.codigo);
   return resultado;
 }
-
 // funcion tabla influencers
 function tablaInfluencers() {
   let tabla = document.getElementById("t1");
@@ -399,7 +386,6 @@ function tablaVentas() {
     tabla.appendChild(fila);
   }
 }
-
 //funcion tabla articulos
 function tablaArticulos() {
   let tabla = document.querySelector("#t2 tbody");
@@ -604,44 +590,59 @@ function obtenerEtiquetasInfluencer(influencer) {
 }
 //function mostrar detalles de venta
 function mostrarDetalleVentasInfluencer(influencer) {
-  let mensaje = "";
+  let tablaDetalleVenta = "";
   let tieneVentas = false;
+  const okV1 = document.getElementById("okv1");
+  const okV2 = document.getElementById("okv2");
+  const alertDetalleVenta = document.getElementById("d1d");
+  const alertInfluencerSinVenta = document.getElementById("d1e");
+
+  okV1.addEventListener("click", () => {
+    alertDetalleVenta.close();
+  })
+  okV2.addEventListener("click", () => {
+    alertInfluencerSinVenta.close();
+  })
+
 
   for (let pos = 0; pos < sistema.ventas.length; pos = pos + 1) {
     if (sistema.ventas[pos].influencer === influencer.nombre) {
       tieneVentas = true;
+      
+      let fila = document.createElement("tr");
 
-      let precioUnitario = obtenerPrecioArticulo(sistema.ventas[pos].articulo);
-      let totalVenta = precioUnitario * sistema.ventas[pos].cantidad;
-      let comision = (totalVenta * influencer.comision) / 100;
+      let celdaNroVenta = document.createElement("td");
+      celdaNroVenta.textContent = sistema.ventas[pos].numero;
+      fila.appendChild(celdaNroVenta);
 
-      mensaje =
-        mensaje +
-        "Venta Nro: " +
-        sistema.ventas[pos].numero +
-        "\n" +
-        "Cantidad: " +
-        sistema.ventas[pos].cantidad +
-        "\n" +
-        "Artículo: " +
-        sistema.ventas[pos].articulo +
-        "\n" +
-        "Precio unitario: $" +
-        precioUnitario +
-        "\n" +
-        "Total: $" +
-        totalVenta +
-        "\n" +
-        "Comisión: $" +
-        comision +
-        "\n\n";
+      let celdaCantidad = document.createElement("td");
+      celdaCantidad.textContent = sistema.ventas[pos].cantidad;
+      fila.appendChild(celdaCantidad);
+
+      let celdaArtículos = document.createElement("td");
+      celdaArtículos.textContent = sistema.ventas[pos].articulo;
+      fila.appendChild(celdaAtículos);
+
+      let celdaPrecioUnitario = document.createElement("td");
+      celdaPrecioUnitario.textContent = obtenerEtiquetaArticulo(sistema.articulos[pos].precio);
+      fila.appendChild(celdaPrecioUnitario);
+
+      let celdaTotal = document.createElement("td");
+      celdaEtiqueta.textContent = obtenerEtiquetaArticulo(sistema.articulos[pos]);
+      fila.appendChild(celdaEtiqueta);
+
+      let celdaComisión = document.createElement("td");
+      celdaComisión.textContent = obtenerEtiquetaArticulo(sistema.articulos[pos]);
+      fila.appendChild(celdaComisión);
+
+      tabla.appendChild(fila);
     }
   }
 
   if (tieneVentas) {
-    alert(mensaje);
+    alertDetalleVenta.showModal();
   } else {
-    alert("El influencer no tiene ventas.");
+    alertInfluencerSinVenta.showModal();
   }
 }
 
