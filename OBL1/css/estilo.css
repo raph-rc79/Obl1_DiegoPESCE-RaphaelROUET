@@ -56,3 +56,22 @@ select{
 #l3{
     margin-right: 50px;
 }
+#graficoBurbujas {
+    display: flex;
+    align-items: end;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.contenedorBurbuja {
+    text-align: center;
+}
+
+.burbuja {
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    margin: auto;
+}

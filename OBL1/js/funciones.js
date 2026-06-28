@@ -1,6 +1,8 @@
 //ROUET--COIRIER Raphaël PESCE Diego
 
 let sistema = new Sistema();
+let ordenActualInfluencer = "ascendente";
+let ordenActualArticulo = "ascendente";
 //formulario influencer
 window.addEventListener("load", () => {
   const buttonopen = document.getElementById("b1");
@@ -46,30 +48,25 @@ window.addEventListener("load", () => {
   const ok6 = document.getElementById("Ok6");
   const ok7 = document.getElementById("Ok7");
   const ok8 = document.getElementById("Ok8");
-  let hayInfluencer = false;
-  let hayArtículo = false;
 
   ok6.addEventListener("click", () => {
     alert6.close();
-  })
+  });
   ok7.addEventListener("click", () => {
     alert7.close();
-  })
+  });
   ok8.addEventListener("click", () => {
     alert8.close();
-  })
+  });
 
   buttonopen.addEventListener("click", () => {
     if (sistema.influencers.length === 0 && sistema.articulos.length === 0) {
       alert6.showModal();
-    }
-    if (sistema.articulos.length === 0) {
+    } else if (sistema.articulos.length === 0) {
       alert7.showModal();
-    }
-    if (sistema.influencer.length === 0) {
+    } else if (sistema.influencers.length === 0) {
       alert8.showModal();
-    }
-    else {
+    } else {
       dialog.showModal();
     }
   });
@@ -93,20 +90,20 @@ window.addEventListener("load", () => {
 
   ok1.addEventListener("click", () => {
     alert1.close();
-  })
+  });
   ok2.addEventListener("click", () => {
     alert2.close();
-  })
+  });
 
   buttonadd.addEventListener("click", () => {
     if (
       n.value.trim() === "" ||
       m.value.trim() === "" ||
-      c.value.trim() === ""
+      c.value.trim() === "" ||
+      Number(c.value) <= 0
     ) {
       alert1.showModal();
-    }
-    else {
+    } else {
       let existeMail = false;
       let pos = 0;
 
@@ -118,15 +115,14 @@ window.addEventListener("load", () => {
       }
       if (existeMail === true) {
         alert2.showModal();
-      }
-      else {
+      } else {
         let influencer = new Influencer(n.value, m.value, Number(c.value));
         sistema.influencers.push(influencer);
         let option = document.createElement("option");
         option.value = influencer.nombre;
         option.text = influencer.nombre;
         opcionesInfluencer.appendChild(option);
-        
+
         n.value = "";
         m.value = "";
         c.value = "";
@@ -143,7 +139,7 @@ window.addEventListener("load", () => {
   const buttonadd = document.getElementById("a2");
   const alert3 = document.getElementById("d2a");
   const alert4 = document.getElementById("d2b");
-  const ok3 = document.getElementById("Ok3")
+  const ok3 = document.getElementById("Ok3");
   const ok4 = document.getElementById("Ok4");
 
   ok3.addEventListener("click", () => {
@@ -151,17 +147,17 @@ window.addEventListener("load", () => {
   });
   ok4.addEventListener("click", () => {
     alert4.close();
-  })
+  });
 
   buttonadd.addEventListener("click", () => {
     if (
       c.value.trim() === "" ||
       d.value.trim() === "" ||
-      p.value.trim() === ""
+      p.value.trim() === "" ||
+      Number(p.value) <= 0
     ) {
       alert3.showModal();
-    }
-    else {
+    } else {
       let existeCodigo = false;
       let pos = 0;
 
@@ -173,8 +169,7 @@ window.addEventListener("load", () => {
       }
       if (existeCodigo === true) {
         alert4.showModal();
-      }
-      else {
+      } else {
         let artículo = new Articulo(c.value, d.value, Number(p.value));
         sistema.articulos.push(artículo);
 
@@ -183,21 +178,28 @@ window.addEventListener("load", () => {
         option.text = artículo.codigo;
         document.getElementById("i3a").appendChild(option);
 
-        const table = document.getElementById("t2");
-        const row = table.insertRow();
-        const cell1 = row.insertCell();
-        const cell2 = row.insertCell();
-        const cell3 = row.insertCell();
-        cell1.textContent = artículo.codigo;
-        cell2.textContent = artículo.descripcion;
-        cell3.textContent = artículo.precio;
+        ordenarArticulos();
+        tablaArticulos();
 
         c.value = "";
         d.value = "";
         p.value = "";
-
       }
     }
+  });
+});
+window.addEventListener("load", () => {
+  const buttonOrderArticulo = document.getElementById("b3");
+
+  buttonOrderArticulo.addEventListener("click", () => {
+    if (ordenActualArticulo === "ascendente") {
+      ordenActualArticulo = "descendente";
+    } else {
+      ordenActualArticulo = "ascendente";
+    }
+
+    ordenarArticulos();
+    tablaArticulos();
   });
 });
 
@@ -213,57 +215,466 @@ window.addEventListener("load", () => {
 
   ok5.addEventListener("click", () => {
     alert5.close();
-  })
+  });
 
   buttonadd.addEventListener("click", () => {
-    if (
-      c.value.trim() === ""
-    ) {
+    if (c.value.trim() === "" || Number(c.value) <= 0) {
       alert5.showModal();
-    }
-    else {
+    } else {
       let m = select.options[select.selectedIndex].text;
-      let venta = new Venta(sistema.proximoNumeroVenta, a.value, i.value, Number(c.value), m);
+      let venta = new Venta(
+        sistema.proximoNumeroVenta,
+        a.value,
+        i.value,
+        Number(c.value),
+        m,
+      );
       sistema.ventas.push(venta);
       sistema.proximoNumeroVenta = sistema.proximoNumeroVenta + 1;
+
+      tablaVentas();
+      tablaInfluencers();
+      tablaArticulos();
+      graficoBurbujas();
 
       c.value = "";
     }
   });
 });
 
-//tabla ordenada infuencer
+//tabla ordenada influencer
 window.addEventListener("load", () => {
   const buttonOrder = document.getElementById("o1");
   const buttonAdd = document.getElementById("a1");
-  buttonAdd.addEventListener("click", () =>{
-    tablaInfluencers();
-  })
-  buttonOrder.addEventListener("click", () => {
+
+  buttonAdd.addEventListener("click", () => {
     ordenarInfluencers();
     tablaInfluencers();
-  })
+  });
 
-})
+  buttonOrder.addEventListener("click", () => {
+    if (ordenActualInfluencer === "ascendente") {
+      ordenActualInfluencer = "descendente";
+    } else {
+      ordenActualInfluencer = "ascendente";
+    }
+
+    ordenarInfluencers();
+    tablaInfluencers();
+  });
+});
+
 function ordenarInfluencers() {
-  sistema.influencers.sort(compararNombre);
+  if (ordenActualInfluencer === "ascendente") {
+    sistema.influencers.sort(compararNombreAscendente);
+  } else {
+    sistema.influencers.sort(compararNombreDescendente);
+  }
 }
-function compararNombre(influencer1, influencer2) {
+
+function compararNombreAscendente(influencer1, influencer2) {
   let resultado = influencer1.nombre.localeCompare(influencer2.nombre);
   return resultado;
 }
-function tablaInfluencers() {
-  const tabla = document.getElementById("t1");
-  tabla.innerHTML = "";
-  for (let pos = 0; pos < sistema.influencers.length; pos++) {
-    const fila = document.createElement("tr");
 
-    for (let propiedad in sistema.influencers[pos]) {
-      const celda = document.createElement("td");
-      celda.innerHTML = sistema.influencers[pos][propiedad];
-      fila.appendChild(celda);
-    }
+function compararNombreDescendente(influencer1, influencer2) {
+  let resultado = influencer2.nombre.localeCompare(influencer1.nombre);
+  return resultado;
+}
+
+//funcion tabla ordenada articulos
+function ordenarArticulos() {
+  if (ordenActualArticulo === "ascendente") {
+    sistema.articulos.sort(compararCodigoAscendente);
+  } else {
+    sistema.articulos.sort(compararCodigoDescendente);
+  }
+}
+
+function compararCodigoAscendente(articulo1, articulo2) {
+  let resultado = articulo1.codigo.localeCompare(articulo2.codigo);
+  return resultado;
+}
+
+function compararCodigoDescendente(articulo1, articulo2) {
+  let resultado = articulo2.codigo.localeCompare(articulo1.codigo);
+  return resultado;
+}
+
+// funcion tabla influencers
+function tablaInfluencers() {
+  let tabla = document.getElementById("t1");
+  tabla.innerHTML = "";
+
+  for (let pos = 0; pos < sistema.influencers.length; pos = pos + 1) {
+    let fila = document.createElement("tr");
+
+    let celdaNombre = document.createElement("td");
+    celdaNombre.textContent = sistema.influencers[pos].nombre;
+    fila.appendChild(celdaNombre);
+
+    let celdaMail = document.createElement("td");
+    celdaMail.textContent = sistema.influencers[pos].mail;
+    fila.appendChild(celdaMail);
+
+    let celdaComision = document.createElement("td");
+    celdaComision.textContent = sistema.influencers[pos].comision;
+    fila.appendChild(celdaComision);
+
+    let celdaTotal = document.createElement("td");
+    celdaTotal.textContent = calcularTotalComisionInfluencer(
+      sistema.influencers[pos],
+    );
+    fila.appendChild(celdaTotal);
+
+    let celdaEtiquetas = document.createElement("td");
+    celdaEtiquetas.textContent = obtenerEtiquetasInfluencer(
+      sistema.influencers[pos],
+    );
+    fila.appendChild(celdaEtiquetas);
+
+    let celdaDetalle = document.createElement("td");
+
+    let botonDetalle = document.createElement("button");
+    botonDetalle.textContent = "Ventas";
+
+    botonDetalle.addEventListener("click", () => {
+      mostrarDetalleVentasInfluencer(sistema.influencers[pos]);
+    });
+
+    celdaDetalle.appendChild(botonDetalle);
+    fila.appendChild(celdaDetalle);
+
+    tabla.appendChild(fila);
+  }
+}
+// funcion tabla ventas
+function tablaVentas() {
+  let tabla = document.querySelector("#t3 tbody");
+  tabla.innerHTML = "";
+
+  for (let pos = 0; pos < sistema.ventas.length; pos = pos + 1) {
+    let fila = document.createElement("tr");
+
+    let celdaNumero = document.createElement("td");
+    celdaNumero.textContent = sistema.ventas[pos].numero;
+    fila.appendChild(celdaNumero);
+
+    let celdaArticulo = document.createElement("td");
+    celdaArticulo.textContent = sistema.ventas[pos].articulo;
+    fila.appendChild(celdaArticulo);
+
+    let celdaInfluencer = document.createElement("td");
+    celdaInfluencer.textContent = sistema.ventas[pos].influencer;
+    fila.appendChild(celdaInfluencer);
+
+    let celdaCantidad = document.createElement("td");
+    celdaCantidad.textContent = sistema.ventas[pos].cantidad;
+    fila.appendChild(celdaCantidad);
+
+    let celdaMedio = document.createElement("td");
+    celdaMedio.textContent = sistema.ventas[pos].medio;
+    fila.appendChild(celdaMedio);
+
+    let celdaAccion = document.createElement("td");
+
+    let botonEliminar = document.createElement("button");
+    botonEliminar.textContent = "Eliminar";
+
+    botonEliminar.addEventListener("click", () => {
+      let confirma = confirm("¿Está seguro de eliminar esta venta?");
+
+      if (confirma) {
+        sistema.ventas.splice(pos, 1);
+        tablaVentas();
+        tablaInfluencers();
+        tablaArticulos();
+        graficoBurbujas();
+      }
+    });
+
+    celdaAccion.appendChild(botonEliminar);
+    fila.appendChild(celdaAccion);
+
     tabla.appendChild(fila);
   }
 }
 
+//funcion tabla articulos
+function tablaArticulos() {
+  let tabla = document.querySelector("#t2 tbody");
+  tabla.innerHTML = "";
+
+  for (let pos = 0; pos < sistema.articulos.length; pos = pos + 1) {
+    let fila = document.createElement("tr");
+
+    let celdaCodigo = document.createElement("td");
+    celdaCodigo.textContent = sistema.articulos[pos].codigo;
+    fila.appendChild(celdaCodigo);
+
+    let celdaDescripcion = document.createElement("td");
+    celdaDescripcion.textContent = sistema.articulos[pos].descripcion;
+    fila.appendChild(celdaDescripcion);
+
+    let celdaPrecio = document.createElement("td");
+    celdaPrecio.textContent = sistema.articulos[pos].precio;
+    fila.appendChild(celdaPrecio);
+
+    let celdaEtiqueta = document.createElement("td");
+    celdaEtiqueta.textContent = obtenerEtiquetaArticulo(sistema.articulos[pos]);
+    fila.appendChild(celdaEtiqueta);
+
+    tabla.appendChild(fila);
+  }
+}
+function graficoBurbujas() {
+  let grafico = document.getElementById("graficoBurbujas");
+  grafico.innerHTML = "";
+
+  let medios = [
+    "1-Instagram",
+    "2-YouTube",
+    "3-X",
+    "4-TikTok",
+    "5-Facebook",
+    "6-Otras",
+  ];
+  let totales = [0, 0, 0, 0, 0, 0];
+  let colores = ["red", "blue", "green", "orange", "purple", "brown"];
+
+  for (let pos = 0; pos < sistema.ventas.length; pos = pos + 1) {
+    let venta = sistema.ventas[pos];
+    let precioArticulo = 0;
+
+    for (
+      let posArticulo = 0;
+      posArticulo < sistema.articulos.length;
+      posArticulo = posArticulo + 1
+    ) {
+      if (sistema.articulos[posArticulo].codigo === venta.articulo) {
+        precioArticulo = sistema.articulos[posArticulo].precio;
+      }
+    }
+
+    let totalVenta = precioArticulo * venta.cantidad;
+
+    for (let posMedio = 0; posMedio < medios.length; posMedio = posMedio + 1) {
+      if (venta.medio.trim() === medios[posMedio]) {
+        totales[posMedio] = totales[posMedio] + totalVenta;
+      }
+    }
+  }
+
+  let maximo = 0;
+
+  for (let pos = 0; pos < totales.length; pos = pos + 1) {
+    if (totales[pos] > maximo) {
+      maximo = totales[pos];
+    }
+  }
+
+  for (let pos = 0; pos < medios.length; pos = pos + 1) {
+    let burbuja = document.createElement("div");
+    burbuja.className = "burbuja";
+    burbuja.style.backgroundColor = colores[pos];
+
+    let tamanio = 30;
+
+    if (maximo > 0) {
+      tamanio = 30 + (totales[pos] / maximo) * 120;
+    }
+
+    burbuja.style.width = tamanio + "px";
+    burbuja.style.height = tamanio + "px";
+
+    burbuja.textContent = "$" + totales[pos];
+
+    let nombreMedio = document.createElement("p");
+    nombreMedio.textContent = medios[pos];
+
+    let contenedor = document.createElement("div");
+    contenedor.className = "contenedorBurbuja";
+    contenedor.appendChild(burbuja);
+    contenedor.appendChild(nombreMedio);
+
+    grafico.appendChild(contenedor);
+  }
+}
+//funcion buscar precio articulo
+function obtenerPrecioArticulo(codigoArticulo) {
+  let precio = 0;
+
+  for (let pos = 0; pos < sistema.articulos.length; pos = pos + 1) {
+    if (sistema.articulos[pos].codigo === codigoArticulo) {
+      precio = sistema.articulos[pos].precio;
+    }
+  }
+
+  return precio;
+}
+//funcion comision total
+function calcularTotalComisionInfluencer(influencer) {
+  let total = 0;
+
+  for (let pos = 0; pos < sistema.ventas.length; pos = pos + 1) {
+    if (sistema.ventas[pos].influencer === influencer.nombre) {
+      let precioArticulo = obtenerPrecioArticulo(sistema.ventas[pos].articulo);
+      let totalVenta = precioArticulo * sistema.ventas[pos].cantidad;
+      let comisionVenta = (totalVenta * influencer.comision) / 100;
+
+      total = total + comisionVenta;
+    }
+  }
+
+  return total;
+}
+//funcion influencer tiene ventas
+function tieneVentasInfluencer(influencer) {
+  let tiene = false;
+
+  for (let pos = 0; pos < sistema.ventas.length; pos = pos + 1) {
+    if (sistema.ventas[pos].influencer === influencer.nombre) {
+      tiene = true;
+    }
+  }
+
+  return tiene;
+}
+//funcion venta mas cara
+function obtenerVentaMasCaraInfluencer(influencer) {
+  let mayor = 0;
+
+  for (let pos = 0; pos < sistema.ventas.length; pos = pos + 1) {
+    if (sistema.ventas[pos].influencer === influencer.nombre) {
+      let precioArticulo = obtenerPrecioArticulo(sistema.ventas[pos].articulo);
+      let totalVenta = precioArticulo * sistema.ventas[pos].cantidad;
+
+      if (totalVenta > mayor) {
+        mayor = totalVenta;
+      }
+    }
+  }
+
+  return mayor;
+}
+//funcion etiquetas
+function obtenerEtiquetasInfluencer(influencer) {
+  let etiquetas = "";
+
+  let totalComision = calcularTotalComisionInfluencer(influencer);
+  let mayorComision = 0;
+
+  for (let pos = 0; pos < sistema.influencers.length; pos = pos + 1) {
+    let totalOtro = calcularTotalComisionInfluencer(sistema.influencers[pos]);
+
+    if (totalOtro > mayorComision) {
+      mayorComision = totalOtro;
+    }
+  }
+
+  if (mayorComision > 0 && totalComision === mayorComision) {
+    etiquetas = etiquetas + "🔥";
+  }
+
+  if (!tieneVentasInfluencer(influencer)) {
+    etiquetas = etiquetas + "🧊";
+  }
+
+  let ventaMasCaraInfluencer = obtenerVentaMasCaraInfluencer(influencer);
+  let ventaMasCaraGeneral = 0;
+
+  for (let pos = 0; pos < sistema.influencers.length; pos = pos + 1) {
+    let ventaMasCaraOtro = obtenerVentaMasCaraInfluencer(
+      sistema.influencers[pos],
+    );
+
+    if (ventaMasCaraOtro > ventaMasCaraGeneral) {
+      ventaMasCaraGeneral = ventaMasCaraOtro;
+    }
+  }
+
+  if (
+    ventaMasCaraGeneral > 0 &&
+    ventaMasCaraInfluencer === ventaMasCaraGeneral
+  ) {
+    etiquetas = etiquetas + "🟢";
+  }
+
+  return etiquetas;
+}
+//function mostrar detalles de venta
+function mostrarDetalleVentasInfluencer(influencer) {
+  let mensaje = "";
+  let tieneVentas = false;
+
+  for (let pos = 0; pos < sistema.ventas.length; pos = pos + 1) {
+    if (sistema.ventas[pos].influencer === influencer.nombre) {
+      tieneVentas = true;
+
+      let precioUnitario = obtenerPrecioArticulo(sistema.ventas[pos].articulo);
+      let totalVenta = precioUnitario * sistema.ventas[pos].cantidad;
+      let comision = (totalVenta * influencer.comision) / 100;
+
+      mensaje =
+        mensaje +
+        "Venta Nro: " +
+        sistema.ventas[pos].numero +
+        "\n" +
+        "Cantidad: " +
+        sistema.ventas[pos].cantidad +
+        "\n" +
+        "Artículo: " +
+        sistema.ventas[pos].articulo +
+        "\n" +
+        "Precio unitario: $" +
+        precioUnitario +
+        "\n" +
+        "Total: $" +
+        totalVenta +
+        "\n" +
+        "Comisión: $" +
+        comision +
+        "\n\n";
+    }
+  }
+
+  if (tieneVentas) {
+    alert(mensaje);
+  } else {
+    alert("El influencer no tiene ventas.");
+  }
+}
+
+//funcion calcular unidades vendidas
+function calcularUnidadesVendidasArticulo(articulo) {
+  let total = 0;
+
+  for (let pos = 0; pos < sistema.ventas.length; pos = pos + 1) {
+    if (sistema.ventas[pos].articulo === articulo.codigo) {
+      total = total + sistema.ventas[pos].cantidad;
+    }
+  }
+
+  return total;
+}
+
+//funcion obtener etiqueta articulo
+function obtenerEtiquetaArticulo(articulo) {
+  let etiqueta = "";
+  let unidadesArticulo = calcularUnidadesVendidasArticulo(articulo);
+  let mayorCantidad = 0;
+
+  for (let pos = 0; pos < sistema.articulos.length; pos = pos + 1) {
+    let unidadesOtroArticulo = calcularUnidadesVendidasArticulo(sistema.articulos[pos]);
+
+    if (unidadesOtroArticulo > mayorCantidad) {
+      mayorCantidad = unidadesOtroArticulo;
+    }
+  }
+
+  if (mayorCantidad > 0 && unidadesArticulo === mayorCantidad) {
+    etiqueta = "⭐";
+  }
+
+  return etiqueta;
+}
